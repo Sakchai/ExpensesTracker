@@ -1,15 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Form, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
 import DefaultLayout from '../../layout/DefaultLayout';
 
 const SignIn: React.FC = () => {
-  return (
-    <DefaultLayout>
-      <Breadcrumb pageName="Sign In" />
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  return (
+    <div>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
@@ -153,20 +158,27 @@ const SignIn: React.FC = () => {
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <span className="mb-1.5 block font-medium">Start for free</span>
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
-                Sign In to TailAdmin
+                Sign In
               </h2>
 
-              <form>
+              <Form
+                onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+                  event.preventDefault();
+                  SignIn(dispatch, { username, password });
+                  navigate('/', { replace: true });
+                }}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
                   </label>
                   <div className="relative">
-                    <input
+                    <InputGroup
                       type="email"
-                      placeholder="Enter your email"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
+                    >
+                      <FormControl placeholder='Enter your email' onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)} />
+                    </InputGroup>
+
 
                     <span className="absolute right-4 top-4">
                       <svg
@@ -190,14 +202,15 @@ const SignIn: React.FC = () => {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    Re-type Password
+                    Password
                   </label>
                   <div className="relative">
-                    <input
+                    <InputGroup
                       type="password"
-                      placeholder="6+ Characters, 1 Capital letter"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
+                    >
+                      <FormControl placeholder='6+ Characters, 1 Capital letter' type='password' onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
+                    </InputGroup>
 
                     <span className="absolute right-4 top-4">
                       <svg
@@ -224,11 +237,11 @@ const SignIn: React.FC = () => {
                 </div>
 
                 <div className="mb-5">
-                  <input
+                  <Button
                     type="submit"
-                    value="Sign In"
                     className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
-                  />
+                  >Sign In
+                  </Button>
                 </div>
 
                 <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
@@ -276,12 +289,12 @@ const SignIn: React.FC = () => {
                     </Link>
                   </p>
                 </div>
-              </form>
+              </Form>
             </div>
           </div>
         </div>
       </div>
-    </DefaultLayout>
+    </div>
   );
 };
 
