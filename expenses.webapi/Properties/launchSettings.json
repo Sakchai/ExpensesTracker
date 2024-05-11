@@ -1,0 +1,40 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:56294",
+      "sslPort": 44373
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JWT_SECRET": "This is my jwt token secret",
+        "JWT_ISSUER": "My Expenses",
+        "JWT_AUDIENCE": "Sakchai",
+        "CLIENT_ID": "428198688853-pt3qup4aofqb7ob4knvt8jdtgm0k98e3.apps.googleusercontent.com",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+      }
+    },
+    "Expenses.WebApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JWT_SECRET": "This is my jwt token secret",
+        "JWT_ISSUER": "My Expenses",
+        "JWT_AUDIENCE": "Sakchai",
+        "CLIENT_ID": "428198688853-pt3qup4aofqb7ob4knvt8jdtgm0k98e3.apps.googleusercontent.com",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+      }
+    }
+  }
+}
