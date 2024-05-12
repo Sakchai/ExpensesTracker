@@ -1,5 +1,7 @@
 ﻿using Expenses.Core;
 using Expenses.Core.CustomExceptions;
+using Expenses.Core.DTO;
+using Expenses.Core.Utilities;
 using Expenses.DB;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,11 +29,37 @@ namespace Expenses.WebApi.Controllers
         }
 
         [HttpPost("signup")]
-        public async Task<IActionResult> SignUp([FromBody] User user)
+        public async Task<IActionResult> SignUp([FromBody] SignUpModel user)
         {
             try
             {
-                var result = await _userService.SignUp(user);
+
+                var checkUsername = await _userManager.FindByEmailAsync(user.UserName);
+
+                if (checkUsername != null)
+                {
+                    throw new UsernameAlreadyExistsException("Username already exists");
+                }
+
+                if (!string.IsNullOrEmpty(user.Password))
+                {
+                    user.Password = _passwordService.HashPassword(user.Password);
+                }
+
+                await _userManager.CreateAsync(new DB.User
+                {
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Password = user.Password,
+                });
+
+                var result = new AuthenticatedUser
+                {
+                    Username = user.UserName,
+                    Token = JwtGenerator.GenerateAuthToken(user.UserName)
+                };
+
+
                 return Created("", result);
             }
             catch (UsernameAlreadyExistsException e)
@@ -89,5 +117,12 @@ namespace Expenses.WebApi.Controllers
 
             return Created("", result);
         }
+    }
+
+    public class SignUpModel
+    {
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

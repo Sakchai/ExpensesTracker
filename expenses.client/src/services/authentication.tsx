@@ -1,11 +1,17 @@
 import { login } from '../app/authenticationSlice';
 import axios, { AxiosInstance } from 'axios';
 
+interface SignUpModel {
+  userName: string;
+  email: string;
+  password: string;
+}
+
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: `https://localhost:5001/Authentication`,
 });
 
-export const SignUp = async (dispatch: any, credentials: any): Promise<void> => {
+export const SignUp = async (dispatch: any, credentials: SignUpModel): Promise<void> => {
     try {
         // api call
         const { data } = await axiosInstance.post('/signup', credentials);
