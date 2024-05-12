@@ -1,12 +1,18 @@
 # Expense Tracker
 The expenses tracker is a simple website that allows you to keep track of your expenses and give you an overall view about what you are spending money on using C#, .NET core 8.0, EF core 8.0, JWT, Identity, React, Tailwind, and Typescript
 
+## Screen
+
+![Image](https://github.com/Sakchai/ExpensesTracker/blob/master/Document/signin.jpg)
+![Image](https://github.com/Sakchai/ExpensesTracker/blob/master/Document/signup.jpg)
+![Image](https://github.com/Sakchai/ExpensesTracker/blob/master/Document/dashboard.jpg)
+
 ## Installation
 To install ExpenseTracker, follow these steps:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Sakchai/Expenses.git
+   git clone https://github.com/Sakchai/ExpensesTracker.git
 2.Install dependencies:
 ```sh
 # with npm
