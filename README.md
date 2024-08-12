@@ -7,6 +7,11 @@ The expenses tracker is a simple website that allows you to keep track of your e
 ![Image](https://github.com/Sakchai/ExpensesTracker/blob/master/Document/signup.png)
 ![Image](https://github.com/Sakchai/ExpensesTracker/blob/master/Document/dashboard.png)
 
+## Give a Star! :star:
+
+   If you like or are using this project to learn or start your solution, please give it a star. Thanks!
+   Or if you're feeling really generous, we now support GitHub sponsorships - see the button above.
+   
 ## Installation
 To install ExpenseTracker, follow these steps:
 
